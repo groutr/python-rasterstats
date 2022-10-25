@@ -179,14 +179,6 @@ def gen_zonal_stats(
                 fsrc.array,
                 mask=(isnodata | ~rv_array))
 
-            # If we're on 64 bit platform and the array is an integer type
-            # make sure we cast to 64 bit to avoid overflow.
-            # workaround for https://github.com/numpy/numpy/issues/8433
-            if sys.maxsize > 2**32 and \
-                    masked.dtype != np.int64 and \
-                    issubclass(masked.dtype.type, np.integer):
-                masked = masked.astype(np.int64)
-
             # execute zone_func on masked zone ndarray
             if zone_func is not None:
                 if not callable(zone_func):
@@ -226,14 +218,14 @@ def gen_zonal_stats(
                 if 'max' in stats:
                     feature_stats['max'] = float(masked.max())
                 if 'mean' in stats:
-                    feature_stats['mean'] = float(masked.mean())
+                    feature_stats['mean'] = float(masked.mean(dtype='int64'))
                 if 'count' in stats:
                     feature_stats['count'] = int(masked.count())
                 # optional
                 if 'sum' in stats:
-                    feature_stats['sum'] = float(masked.sum())
+                    feature_stats['sum'] = float(masked.sum(dtype='int64'))
                 if 'std' in stats:
-                    feature_stats['std'] = float(masked.std())
+                    feature_stats['std'] = float(masked.std(dtype='int64'))
                 if 'median' in stats:
                     feature_stats['median'] = float(np.median(masked.compressed()))
                 if 'majority' in stats:
