@@ -227,7 +227,7 @@ def gen_zonal_stats(
                 if 'std' in stats:
                     feature_stats['std'] = float(masked.std(dtype='int64'))
                 if 'median' in stats:
-                    feature_stats['median'] = float(np.median(masked.compressed()))
+                    feature_stats['median'] = float(np.ma.median(masked))
                 if 'majority' in stats:
                     feature_stats['majority'] = float(key_assoc_val(pixel_count, max))
                 if 'minority' in stats:
