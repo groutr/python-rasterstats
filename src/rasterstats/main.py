@@ -233,7 +233,7 @@ def gen_zonal_stats(
                 if 'minority' in stats:
                     feature_stats['minority'] = float(key_assoc_val(pixel_count, min))
                 if 'unique' in stats:
-                    feature_stats['unique'] = len(list(pixel_count.keys()))
+                    feature_stats['unique'] = len(pixel_count)
                 if 'range' in stats:
                     try:
                         rmin = feature_stats['min']
