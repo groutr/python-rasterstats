@@ -218,14 +218,14 @@ def gen_zonal_stats(
                 if 'max' in stats:
                     feature_stats['max'] = float(masked.max())
                 if 'mean' in stats:
-                    feature_stats['mean'] = float(masked.mean(dtype='int64'))
+                    feature_stats['mean'] = float(masked.mean(dtype='float64'))
                 if 'count' in stats:
                     feature_stats['count'] = int(masked.count())
                 # optional
                 if 'sum' in stats:
-                    feature_stats['sum'] = float(masked.sum(dtype='int64'))
+                    feature_stats['sum'] = float(masked.sum(dtype='float64'))
                 if 'std' in stats:
-                    feature_stats['std'] = float(masked.std(dtype='int64'))
+                    feature_stats['std'] = float(masked.std(dtype='float64'))
                 if 'median' in stats:
                     feature_stats['median'] = float(np.ma.median(masked))
                 if 'majority' in stats:
